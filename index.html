@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenSpaces - Inicio</title>
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background-color: #f2f5f1; color: #2e4e2f; }
+    header, footer { background-color: #ffffff; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+    nav a { margin: 0 1rem; text-decoration: none; color: #2e4e2f; font-weight: 600; }
+    .hero { background-image: url('fondo-hojas.jpg'); background-size: cover; color: #fff; padding: 5rem 2rem; text-align: center; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .categorias { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; padding: 2rem; }
+    .categoria { background: #fff; border-radius: 12px; padding: 1rem; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.2s; }
+    .categoria:hover { transform: scale(1.03); }
+    .categoria img { width: 80px; height: 80px; object-fit: contain; }
+    .apartado { background: #eafae7; padding: 2rem; text-align: center; margin-top: 2rem; }
+    .apartado h2 { margin-bottom: 1rem; }
+    .formulario-recomendador { display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: 1rem auto; }
+    .formulario-recomendador label { font-weight: bold; }
+    .formulario-recomendador select, .formulario-recomendador button { padding: 0.5rem; border: 1px solid #ccc; border-radius: 8px; }
+    .formulario-recomendador button { background-color: #2e4e2f; color: white; font-weight: bold; cursor: pointer; }
+    .formulario-recomendador button:hover { background-color: #3d6d3e; }
+    footer small { display: block; margin-top: 0.5rem; color: #7d997e; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div><strong>GreenSpaces</strong></div>
+    <nav>
+      <a href="#categorias">Categorías</a>
+      <a href="#recomendaciones">Recomendador</a>
+      <a href="#footer">Nosotros</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Explora el mundo de las plantas</h1>
+    <p>Crea espacios verdes según tu estilo de vida y mejora el planeta</p>
+  </section>
+
+  <section id="categorias" class="categorias">
+    <div class="categoria"><img src="medicinales.png" alt="Medicinales"><p>Medicinales</p></div>
+    <div class="categoria"><img src="frutales.png" alt="Frutales"><p>Frutales</p></div>
+    <div class="categoria"><img src="ornamentales.png" alt="Ornamentales"><p>Ornamentales</p></div>
+    <div class="categoria"><img src="interior.png" alt="Interior"><p>Interior</p></div>
+    <div class="categoria"><img src="aromaticas.png" alt="Aromáticas"><p>Aromáticas</p></div>
+    <div class="categoria"><img src="huerto.png" alt="Huerto"><p>Huerto</p></div>
+    <div class="categoria"><img src="cactus.png" alt="Cactus"><p>Suculentas</p></div>
+    <div class="categoria"><img src="arboles.png" alt="Árboles"><p>Árboles</p></div>
+  </section>
+
+  <section id="recomendaciones" class="apartado">
+    <h2>¿Qué planta es ideal para ti?</h2>
+    <form class="formulario-recomendador" onsubmit="mostrarRecomendacion(event)">
+      <label for="vivienda">¿Dónde vives?</label>
+      <select id="vivienda">
+        <option>Apartamento</option>
+        <option>Casa</option>
+        <option>Hotel</option>
+        <option>Rural / Campo</option>
+      </select>
+
+      <label for="mascotas">¿Tienes mascotas?</label>
+      <select id="mascotas">
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <label for="espacio">¿Tienes espacio exterior?</label>
+      <select id="espacio">
+        <option>Sí</option>
+        <option>No</option>
+      </select>
+
+      <button type="submit">¡Descubre tu planta ideal!</button>
+    </form>
+    <div id="resultado"></div>
+  </section>
+
+  <footer id="footer">
+    <div>
+      <p><strong>GreenSpaces</strong> | Conecta con la naturaleza</p>
+      <small>Contacto: contacto@greenspaces.com | Instagram / Facebook / Twitter</small>
+      <small>Diseñado con amor por el planeta 🌱</small>
+    </div>
+  </footer>
+
+  <script>
+    function mostrarRecomendacion(e) {
+      e.preventDefault();
+      const vivienda = document.getElementById('vivienda').value;
+      const mascotas = document.getElementById('mascotas').value;
+      const espacio = document.getElementById('espacio').value;
+
+      let resultado = "";
+      if (vivienda === "Apartamento" && espacio === "No") {
+        resultado += "🌿 Recomendamos plantas de interior como sansevierias, potos o helechos.\n";
+      } else if (vivienda === "Casa" && espacio === "Sí") {
+        resultado += "🌳 Puedes tener frutales pequeños, aromáticas y plantas ornamentales.\n";
+      } else if (mascotas === "Sí") {
+        resultado += "🐾 Considera plantas no tóxicas como palmas, calatheas y helechos.\n";
+      } else {
+        resultado += "🌼 Elige plantas fáciles de cuidar como cactus, crasas o lavandas.\n";
+      }
+      document.getElementById('resultado').innerText = resultado;
+    }
+  </script>
+
+</body>
+</html>
